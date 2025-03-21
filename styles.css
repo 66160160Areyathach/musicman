@@ -1,0 +1,518 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+/* สำหรับหน้าจอเล็ก (มือถือ) */
+@media screen and (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        display: none; /* ซ่อนเมนูหลักไว้ก่อน */
+        text-align: center;
+    }
+
+    .nav-links.active {
+        display: flex; /* แสดงเมนูเมื่อกดปุ่ม */
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+    }
+
+    .hamburger div {
+        width: 30px;
+        height: 3px;
+        background: black;
+        margin: 5px;
+    }
+}
+
+
+/* ====== NAVIGATION BAR ====== */
+nav {
+    width: 100%;
+    background: #ddd;
+    padding: 10px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    z-index: 1000; /* ให้ Navbar อยู่บนสุด */
+}
+
+/* เมนูหลัก */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links li {
+    position: relative;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: black;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 10px;
+    display: block;
+}
+
+/* ====== LOGO STYLING ====== */
+.logo img {
+    height: 100px; /* ปรับขนาดโลโก้ */
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.logo img:hover {
+    transform: scale(1.1); /* ทำให้โลโก้ขยายเล็กน้อยตอน Hover */
+}
+
+/* ====== DROPDOWN MENU ====== */
+.dropdown {
+    list-style: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #ddd;
+    border-radius: 5px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    display: none; /* ซ่อนเมนูย่อยก่อน */
+    min-width: 150px;
+    z-index: 1000; /* ให้ Navbar อยู่บนสุด */
+}
+
+.dropdown li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.dropdown li:last-child {
+    border-bottom: none;
+}
+
+.dropdown li a {
+    font-size: 16px;
+    color: black;
+    text-decoration: none;
+}
+
+.dropdown li a:hover {
+    background: #f1f1f1;
+    transition: 0.3s;
+}
+
+/* แสดงเมนูย่อยเมื่อเอาเมาส์ไปชี้ */
+.dropdown-container:hover .dropdown {
+    display: block;
+}
+
+/* ====== ช่องค้นหา ====== */
+.search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.search input {
+    position: relative;
+    right: -200px; /* ขยับไปทางขวา */
+    padding: 8px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/*.search button {
+    position: relative;
+    right: -200px; /* ขยับไปทางขวา 
+    background: black;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+*/
+
+
+
+
+
+/* ====== BANNER SECTION ====== */
+.banner {
+    position: relative;
+    width: 100%;
+    height: 450px; /* ปรับขนาดความสูงของแบนเนอร์ */
+    overflow: hidden;
+}
+
+.banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ทำให้รูปเต็มพื้นที่ โดยไม่เสียอัตราส่วน */
+}
+
+/* กล่องข้อความบนแบนเนอร์ (ให้อยู่ทางซ้าย) */
+.banner-content {
+    position: absolute;
+    top: 50%;
+    left: 50px; /* ขยับไปทางซ้าย */
+    transform: translateY(-50%);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 5px;
+    max-width: 50%; /* ไม่ให้ข้อความยาวเกินไป */
+}
+
+.banner-content h1 {
+    font-size: 50px; /* ปรับขนาดใหญ่ขึ้น */
+    font-weight: bold;
+}
+
+/* ปุ่ม SHOP NOW (ให้อยู่มุมขวาล่าง) */
+.shop-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 50px; /* ขยับไปทางขวา */
+    background: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 15px 36px;
+    font-size: 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.shop-btn:hover {
+    background: #000000; /* เปลี่ยนสีตอน hover */
+    color: rgb(255, 255, 255);
+}
+
+.products {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+.product {
+    background: white;
+    padding: 30px;
+    text-align: center;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.product a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+}
+
+/* เพิ่มเอฟเฟกต์ hover */
+.product:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
+}
+
+.product img {
+    width: 170px;   /* กำหนดความกว้างคงที่ */
+    height: 220px;  /* กำหนดความสูงคงที่ */
+    object-fit: contain; /* ให้รูปอยู่ในกรอบ โดยไม่ถูกตัดขอบ */
+    border: 0px solid #ddd; /* เส้นขอบบางๆ ให้ดูเป็นระเบียบ (เลือกใส่หรือไม่ก็ได้) */
+    background: #fff; /* กำหนดพื้นหลังให้ดูชัดขึ้น */
+}
+
+.product:hover {
+    background: #292929; /* เปลี่ยนสีตอน hover */
+    color: rgb(255, 255, 255);
+}
+
+.price {
+    color: orange;
+}
+
+/* ====== FOOTER ====== */
+footer {
+    background: #222;
+    color: white;
+    padding: 30px 0;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+    flex-wrap: wrap;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+    padding: 20px;
+}
+
+.footer-section h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.footer-section p, 
+.footer-section ul {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #ffcc00;
+}
+
+.social-icons a {
+    display: inline-block;
+    margin: 0 50px;
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    color: #ffcc00;
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    font-size: 14px;
+    border-top: 1px solid #444;
+    padding-top: 10px;
+}
+
+/* จัดตำแหน่ง login/sign up */
+.auth {
+    display: flex;
+    gap: 15px;
+}
+
+.auth a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+/* ====== LOGIN PAGE ====== */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    background: #f5f5f5;
+}
+
+.login-box {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    text-align: center;
+}
+
+.login-box h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* ช่องใส่ข้อมูล */
+.input-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* ปุ่ม Login */
+.login-btnWeb {
+    width: 100%;
+    padding: 12px;
+    background: black;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-btnWeb:hover {
+    background: #333;
+}
+
+/* ลิงก์ไปหน้า Sign Up */
+.signup-link {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.signup-link a {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+/* ====== SIGN-UP PAGE ====== */
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    background: #f5f5f5;
+}
+
+.signup-box {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    text-align: center;
+}
+
+.signup-box h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* ช่องใส่ข้อมูล */
+.input-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* ปุ่ม Sign Up */
+.signup-btnWeb {
+    width: 100%;
+    padding: 12px;
+    background: black;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.signup-btnWeb:hover {
+    background: #333;
+}
+
+/* ลิงก์ไปหน้า Login */
+.login-link {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.login-link a {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+/* ปุ่มnavbar Login */
+.login-btn {
+    background: white;
+    color: black;
+    border: 2px solid black;
+}
+
+.login-btn:hover {
+    background: black;
+    color: white;
+}
+
+/* ปุ่มnavbar Sign Up */
+.signup-btn {
+    background: black;
+    color: white;
+    border: 2px solid black;
+}
+
+.signup-btn:hover {
+    background: white;
+    color: black;
+}
+
+
